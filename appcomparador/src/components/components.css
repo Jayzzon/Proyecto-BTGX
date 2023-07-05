@@ -1,0 +1,30 @@
+.menubtn{
+    background-color: aqua;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.menubtn:hover(){
+    background-color: brown;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-dos{
+    display: none;
+    background-color: rgb(42,111,214);
+    min-width: 200px;
+}
+.dropdown-dos a{
+    color: crimson;
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-dos a:hover{
+    display: block;
+}
