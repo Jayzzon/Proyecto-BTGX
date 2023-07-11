@@ -9,9 +9,9 @@ export default function TableProductos() {
     precio:"",
     cantidad:"",
     descripcion:"",
-    imagen:""
+    image:""
   };
-  const urlImages = "http://localhost:4000/images/";
+  const urlImages = "http://127.0.0.1:4000/images/";
   const [saveDatos, setSaveDatos]=useState(datos);
   const [almacenarDatos, setAlmacenarDatos]=useState([]);
   const navigate=useNavigate();
@@ -27,16 +27,16 @@ export default function TableProductos() {
   }
   const Guardar=async(e)=>{
     e.preventDefault();
-    const formu = document.getElementById("form-producto");
-    const formData = new FormData(formu);
+    const formu = document.getElementById("form-productos");
+    const formData = new FormData(formu)
 
-    await Axios.post("producto/guardarProducto",saveDatos).then(
-    ()=>{
+    await Axios.post("producto/guardarProducto",formData).then(()=>{
       console.log("Registros guardados con exito");
     }
     )
-    //console.log(saveDatos);
-    //consultarInfo();
+    console.log();
+    consultarInfo();
+    //saveDatos(datos);
   };
   const consultarInfo=async()=>{
     const consultar=await Axios.get("producto/consultarProduct");
@@ -44,18 +44,16 @@ export default function TableProductos() {
     //console.log(almacenarDatos.data);
     //consultarInfo();
   }
-  const Editar=async(id)=>{
-    alert("Se va a editar")
-  }
 
   useEffect(()=>{
     consultarInfo();
   },[])
 
-  const ListaProducto=almacenarDatos.map(productos=>{
+
+  const ListaProducto=almacenarDatos.map((productos, index)=>{
     return(
       <tbody>
-          <th scope='row'>{productos.id}</th>
+          <th scope='row'>{index + 1}</th>
           <td>{productos.nombre}</td>
           <td>$&nbsp;{productos.precio}.00</td>
           <td>{productos.cantidad}</td>
@@ -186,7 +184,7 @@ export default function TableProductos() {
                     id="image"
                     placeholder="Ingresa la imagen"
                     name="image"
-                    value={saveDatos.imagen}
+                    value={saveDatos.image}
                     onChange={onChange}
                     required
                   />
